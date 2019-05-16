@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{{msg}}</span>
+    </div>
+    <script >
+        //MVVM中的VM
+        const VM=new Vue({
+            el:'#app',//要控制的区域 id
+            data:{
+                msg:'hello world!' //MVVM中的M
+            }
+        });
+    </script>
+</body>
+</html>

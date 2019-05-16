@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="app">
+    <!--v-cloak与v-text
+        作用:在网速缓慢的时候隐藏插值
+        区别:前者覆盖内容,后者不会
+    -->
+    <div v-cloak>这里会显示内容{{msg}}</div>
+    <div v-text="msg">这里不会显示内容</div>
+
+    <!--v-text与v-html区别
+        前者不会将内容中的标签解析成html,后者会
+    -->
+    <div v-text="msg1">这里不会显示内容 不会解析成html</div>
+    <div v-html="msg2">这里不会显示内容 会解析成html</div>
+
+    <input type="button" title="">
+</div>
+
+
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            msg: 'hello',
+            msg1: '<div>v-text不会解析成html</div>',
+            msg2: '<div>v-html会解析成html</div>' //MVVM中的M
+        }
+    });
+</script>
+
+</body>
+</html>
