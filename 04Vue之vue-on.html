@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <!-- vue-on
+        事件绑定机制 后面可以跟js的方法或表达式
+        简写: :event
+    -->
+    <input type="button" v-on:click="show">
+</div>
+<script >
+    //MVVM中的VM
+    const VM=new Vue({
+        el:'#app',//要控制的区域 id
+        data:{
+            msg:'hello world!' //MVVM中的M
+        },
+        methods:{  //methods中定义当前vue实例可用的方法
+            show:()=>{
+                alert('hello');
+            }
+        }
+    });
+</script>
+</body>
+</html>
