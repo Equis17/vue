@@ -9,7 +9,7 @@
 <div id="app">
     <!-- vue-on
         事件绑定机制 后面可以跟js的方法或表达式
-        简写: :event
+        简写: @event
     -->
     <input type="button" v-on:click="show">
 </div>
@@ -21,8 +21,8 @@
             msg:'hello world!' //MVVM中的M
         },
         methods:{  //methods中定义当前vue实例可用的方法
-            show:()=>{
-                alert('hello');
+            show:function () {
+                alert(this.msg);
             }
         }
     });
