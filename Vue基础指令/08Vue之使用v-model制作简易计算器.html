@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="n1">
+    <select v-model="opt">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">x</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" v-model="n2">
+    <input type="button" value="运算" @click="getResult">
+    <input type="text" :value="result">
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            n1: 0, //MVVM中的M
+            n2: 0,
+            opt: '+',
+            result: ''
+        }, methods: {
+            getResult: function () {
+                /*switch (this.opt) {
+                    case '':
+                        return;
+                    case '0':
+                        this.result = this.n1 + this.n2;
+                        break;
+                    case '1':
+                        this.result = this.n1 - this.n2;
+                        break;
+                    case '2':
+                        this.result = this.n1 * this.n2;
+                        break;
+                    case '3':
+                        this.result = this.n1 / this.n2;
+                        break;
+                }*/
+                let codeStr = `${parseInt(this.n1)}+ ${this.opt} +${parseInt(this.n2)};`;
+                this.result = eval(codeStr);
+
+            }
+        }
+    });
+</script>
+</body>
+</html>
