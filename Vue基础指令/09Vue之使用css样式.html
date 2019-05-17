@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .thin {
+            font-weight: lighter;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .active {
+            font-size: 19px;
+        }
+    </style>
+</head>
+<body>
+<!--使用v-bind绑定属性样式.简写为:calss-->
+<div id="app">
+    <!--常规class写法-->
+    <!--    <p class="red">{{msg}}</p>-->
+    <!--使用数组形式调用样式-->
+    <!--    <p :class="['red','thin']">写死了的数组形式</p>-->
+    <!--    <p :class="style">调用VM中的数组style</p>-->
+    <!--使用三元表达式调用样式-->
+    <!--    <p :class="[flag===true?'active':'']">激活</p>-->
+    <!--    <p :class="">正常大小</p>-->
+    <!--使用对象调用样式-->
+            <p :class="{red:true,italic:true,active:true}">写死了的对象形式</p>
+            <p :class="styleObj">调用VM中的对象styleObj</p>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            msg: 'hello world!', //MVVM中的M
+            style: ['red', 'thin'],
+            styleObj: {red: true, italic: true, active: true},
+            flag: true
+        }
+    });
+</script>
+</body>
+</html>
