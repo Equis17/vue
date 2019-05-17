@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        #app {
+            padding: 0 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>添加品牌</h1>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" v-model="id">
+                </div>
+                <div class="form-group">
+                    <label for="NAME">NAME</label>
+                    <input type="text" class="form-control" id="NAME" v-model="name">
+                </div>
+                <button type="button" class="btn btn-default" @click="add">ADD</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="KEYWORDS">KEYWORDS</label>
+                    <input type="text" class="form-control" id="KEYWORDS" @input="search" v-model="keywords">
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>ID</td>
+            <td>品牌名称</td>
+            <td>添加时间</td>
+            <td>操作</td>
+        </tr>
+        <tr v-for="item in searchList" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td><a href="#" @click.prevent="del(item.id)">DELETE</a></td>
+        </tr>
+    </table>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {//MVVM中的M
+            id: 0,
+            name: '',
+            date: '',
+            keywords: '',
+            list: [
+                {id: 1, name: "BMW", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 2, name: "AMAZON", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 3, name: "ALIBABA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 4, name: "TENCENT", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 5, name: "BAIDU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 6, name: "SINA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 7, name: "SOHU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 8, name: "APPLE", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 9, name: "HUAWEI", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 10, name: "OPPO", date: new Date().toISOString().replace(/[tz]/gi, ' ')}
+            ],
+            searchList: [
+                {id: 1, name: "BMW", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 2, name: "AMAZON", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 3, name: "ALIBABA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 4, name: "TENCENT", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 5, name: "BAIDU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 6, name: "SINA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 7, name: "SOHU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 8, name: "APPLE", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 9, name: "HUAWEI", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
+                {id: 10, name: "OPPO", date: new Date().toISOString().replace(/[tz]/gi, ' ')}]
+        },
+        methods: {
+            add: function () {
+                this.date = new Date().toISOString().replace(/[tz]/gi, ' ');
+                this.list.push({id: this.id, name: this.name, date: this.date});
+                this.searchList = this.list;
+            },
+            del: function (key) {
+                this.list.splice(key - 1, 1);
+                this.searchList = this.list;
+            },
+            search: function () {
+                this.searchList = [];
+                for (let item of this.list) {
+                    if (item['name'].includes(this.keywords)) {
+                        this.searchList.push(item);
+                    }
+                }
+
+            }
+        }
+    });
+</script>
+</body>
+</html>
