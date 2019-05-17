@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <!--普通数组循环-->
+    <span v-for="item in list">{{item}}</span><br>
+    <!--普通数组循环 i为索引-->
+    <p v-for="(item ,i) in list">item:{{item}}------i:{{i}}</p><br>
+    <!--对象数组循环 i为索引-->
+    <p v-for="(user,i) in objList">id:{{user.id}}------name:{{user.name}}------i:{{i}}</p><br>
+    <!--对象循环 v为value k为key i为索引-->
+    <p v-for="(v,k) in user">key:{{k}}------value:{{v}}</p>
+    <!--迭代数字-->
+    <span v-for="i in 10">{{i}}</span>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            list: [1, 2, 3, 4], //MVVM中的M
+            objList:[
+                {id:1,name:'a'},
+                {id:2,name:'b'},
+                {id:3,name:'c'},
+                {id:4,name:'d'}
+            ],
+            user:{
+                id:1,
+                name:"equis",
+                gender:'male'
+            }
+        }
+    });
+</script>
+</body>
+</html>
