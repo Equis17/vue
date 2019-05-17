@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <!-- v-if与v-show的特点
+        v-if每次都会删除或创建元素 当初始值为false的时候不创建
+        v-show仅仅对元素进行display样式的操作 当初始值为false的时候创建但隐藏
+
+        因此 v-if适合不频繁的操作的元素 v-show适合频繁操作的元素
+    -->
+    <input type="button" value="toggle" @click="flag=!flag">
+    <h3 v-show="flag">我是v-show控制的元素</h3>
+    <hr>
+    <h3 v-if="flag">我是v-if控制的元素</h3>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            flag: true//MVVM中的M
+        }
+    });
+</script>
+</body>
+</html>
