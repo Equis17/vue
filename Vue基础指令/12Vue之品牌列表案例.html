@@ -48,13 +48,17 @@
         <tr v-for="item in searchList" :key="item.id">
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
-            <td>{{item.date}}</td>
+            <td>{{item.date|dateHandler}}</td>
             <td><a href="#" @click.prevent="del(item.id)">DELETE</a></td>
         </tr>
     </table>
 </div>
 <script>
     //MVVM中的VM
+
+    Vue.filter('dateHandler', function (dateStr) {
+        return dateStr.toISOString().replace(/[tz]/gi, ' ');
+    });
     const VM = new Vue({
         el: '#app',//要控制的区域 id
         data: {//MVVM中的M
@@ -63,32 +67,32 @@
             date: '',
             keywords: '',
             list: [
-                {id: 1, name: "BMW", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 2, name: "AMAZON", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 3, name: "ALIBABA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 4, name: "TENCENT", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 5, name: "BAIDU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 6, name: "SINA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 7, name: "SOHU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 8, name: "APPLE", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 9, name: "HUAWEI", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 10, name: "OPPO", date: new Date().toISOString().replace(/[tz]/gi, ' ')}
+                {id: 1, name: "BMW", date: new Date()},
+                {id: 2, name: "AMAZON", date: new Date()},
+                {id: 3, name: "ALIBABA", date: new Date()},
+                {id: 4, name: "TENCENT", date: new Date()},
+                {id: 5, name: "BAIDU", date: new Date()},
+                {id: 6, name: "SINA", date: new Date()},
+                {id: 7, name: "SOHU", date: new Date()},
+                {id: 8, name: "APPLE", date: new Date()},
+                {id: 9, name: "HUAWEI", date: new Date()},
+                {id: 10, name: "OPPO", date: new Date()}
             ],
             searchList: [
-                {id: 1, name: "BMW", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 2, name: "AMAZON", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 3, name: "ALIBABA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 4, name: "TENCENT", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 5, name: "BAIDU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 6, name: "SINA", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 7, name: "SOHU", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 8, name: "APPLE", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 9, name: "HUAWEI", date: new Date().toISOString().replace(/[tz]/gi, ' ')},
-                {id: 10, name: "OPPO", date: new Date().toISOString().replace(/[tz]/gi, ' ')}]
+                {id: 1, name: "BMW", date: new Date()},
+                {id: 2, name: "AMAZON", date: new Date()},
+                {id: 3, name: "ALIBABA", date: new Date()},
+                {id: 4, name: "TENCENT", date: new Date()},
+                {id: 5, name: "BAIDU", date: new Date()},
+                {id: 6, name: "SINA", date: new Date()},
+                {id: 7, name: "SOHU", date: new Date()},
+                {id: 8, name: "APPLE", date: new Date()},
+                {id: 9, name: "HUAWEI", date: new Date()},
+                {id: 10, name: "OPPO", date: new Date()}]
         },
         methods: {
             add: function () {
-                this.date = new Date().toISOString().replace(/[tz]/gi, ' ');
+                this.date = new Date();
                 this.list.push({id: this.id, name: this.name, date: this.date});
                 this.searchList = this.list;
             },
