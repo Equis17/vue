@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <span v-color="'blue'">blue</span>
+    <span v-red>red</span>
+    <input v-foucs type="text">
+</div>
+<script>
+    /*全局指令*/
+    Vue.directive('foucs', {
+        inserted: function (e1) {
+            e1.focus();
+        }
+    });
+    /*如果钩子函数只用到bind或者inserted 可以简写*/
+    /*Vue.directive('color', {
+        bind: function (e1, binding) {
+            e1.style.color = binding.value;
+        }
+    });
+    */
+    Vue.directive('color', function (e1, binding) {
+        e1.style.color = binding.value;
+    });
+
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {//MVVM中的M
+            msg: 'blur'
+        },
+        //私有指令
+        directives: {
+            'red': {
+                bind: function (e1) {
+                    e1.style.color = 'red';
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

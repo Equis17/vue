@@ -55,7 +55,7 @@
 </div>
 <script>
     //MVVM中的VM
-
+    /*当全局与私有的过滤器名字想同的时候 采用就近原则 使用私有过滤器*/
     Vue.filter('dateHandler', function (dateStr) {
         return dateStr.toISOString().replace(/[tz]/gi, ' ');
     });
