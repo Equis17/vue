@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="id">
+    <input type="text" v-model="name">
+    <input type="button" @click="add" value="submit">
+    <!--如果不使用v-bind:key绑定值的话,选中的input会乱序-->
+    <!--<p v-for="item in list">
+        <input type="checkbox">{{item.id}}------{{item.name}}
+    </p>-->
+    <!--使用v-bind:key 简写:key绑定唯一值 这样选中的input就不会乱序 key值必须是唯一的number/string-->
+    <p v-for="item in list" :key="item.id">
+        <input type="checkbox">{{item.id}}------{{item.name}}
+    </p>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {//MVVM中的M
+            name: '',
+            id: '',
+            list: [
+                {id: 1, name: 'mike'},
+                {id: 2, name: 'louis'},
+                {id: 3, name: 'lukas'},
+                {id: 4, name: 'jack'},
+            ]
+        },
+        methods: {
+            add: function () {
+                this.list.unshift({id: this.id, name: this.name});
+            }
+        }
+    });
+</script>
+</body>
+</html>
