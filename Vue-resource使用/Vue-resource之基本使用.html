@@ -18,7 +18,7 @@
         el: '#app',//要控制的区域 id
         data: {},
         methods: {
-            getInfo: function () {this.$http.get('http://vue.studyit.io/api/getlunbo').then((result)=>{console.log(result)});},
+            getInfo: function () {this.$http.get('http://vue.studyit.io/api/getprodlist').then((result)=>{console.log(result)});},
             postInfo:function () {this.$http.post('http://vue.studyit.io/api/post',{},{emulateJSON:true}).then((result)=>{console.log(result)})},
             JSONInfo:function () {this.$http.post('http://vue.studyit.io/api/jsonp').then((result)=>{console.log(result)})}
 
