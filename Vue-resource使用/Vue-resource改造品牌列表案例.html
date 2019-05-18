@@ -21,22 +21,10 @@
         <div class="col-md-6 form-group">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" v-model="id">
-                </div>
-                <div class="form-group">
                     <label for="NAME">NAME</label>
                     <input type="text" class="form-control" id="NAME" v-model="name">
                 </div>
                 <button type="button" class="btn btn-default" @click="add">ADD</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="KEYWORDS">KEYWORDS</label>
-                    <input type="text" class="form-control" id="KEYWORDS" @input="search" v-model="keywords">
-                </div>
             </form>
         </div>
     </div>
@@ -64,36 +52,48 @@
     const VM = new Vue({
         el: '#app',//要控制的区域 id
         data: {//MVVM中的M
-            id: 0,
             name: '',
             date: '',
             keywords: '',
-            searchList: [
-                {id: 1, name: "BMW", date: new Date()},
-                {id: 2, name: "AMAZON", date: new Date()},
-                {id: 3, name: "ALIBABA", date: new Date()},
-                {id: 4, name: "TENCENT", date: new Date()},
-                {id: 5, name: "BAIDU", date: new Date()},
-                {id: 6, name: "SINA", date: new Date()},
-                {id: 7, name: "SOHU", date: new Date()},
-                {id: 8, name: "APPLE", date: new Date()},
-                {id: 9, name: "HUAWEI", date: new Date()},
-                {id: 10, name: "OPPO", date: new Date()}]
+            searchList: []
         },
         methods: {
+            add: function () {
+                this.$http.post('http://vue.studyit.io/api/addproduct', {name: this.name}, {emulateJSON: true}, (result) => {
+                    if (result.body.status === 0) {
+                        alert(result.body.message);
+                        this.getAllList();
+                    } else {
+                        alert(result.body.message);
+                    }
+                })
+            },
             getAllList: function () {
                 this.$http.get('http://vue.studyit.io/api/getprodlist').then((result) => {
-                    if (result.status === 0) {
-                        return result['message'];
+                    if (result.body.status === 0) {
+                        return result.body['message'];
                     } else {
                         console.log('error');
                         return {};
                     }
                 });
+            },
+            del: function (id) {
+                this.$http.get('vueapi.ittun.com/api/delproduct/' + id, (result) => {
+                    if (result.body.status === 0) {
+                        alert(result.body.message);
+                        this.getAllList();
+                    } else {
+                        alert(result.body.message);
+                    }
+                })
             }
         },
-        created(){
-            this.searchList=this.getAllList();
+        created() {
+            this.searchList = this.getAllList();
+        },
+        updated() {
+
         }
     });
 </script>
