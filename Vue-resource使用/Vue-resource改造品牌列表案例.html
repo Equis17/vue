@@ -44,7 +44,8 @@
     </table>
 </div>
 <script>
-    Vue.http.options.root='http://vue.studyit.io';
+    Vue.http.options.root = 'http://vue.studyit.io/';
+    Vue.http.options.emulateJSON = true;
     //MVVM中的VM
     /*当全局与私有的过滤器名字想同的时候 采用就近原则 使用私有过滤器*/
     Vue.filter('dateHandler', function (dateStr) {
@@ -60,7 +61,7 @@
         },
         methods: {
             add: function () {
-                this.$http.post('/api/addproduct', {name: this.name}, {emulateJSON: true}, (result) => {
+                this.$http.post('api/addproduct', {name: this.name}, (result) => {
                     if (result.body.status === 0) {
                         alert(result.body.message);
                         this.getAllList();
@@ -70,7 +71,7 @@
                 })
             },
             getAllList: function () {
-                this.$http.get('/api/getprodlist').then((result) => {
+                this.$http.get('api/getprodlist').then((result) => {
                     if (result.body.status === 0) {
                         return result.body['message'];
                     } else {
@@ -80,7 +81,7 @@
                 });
             },
             del: function (id) {
-                this.$http.get('/api/delproduct/' + id, (result) => {
+                this.$http.get('api/delproduct/' + id, (result) => {
                     if (result.body.status === 0) {
                         alert(result.body.message);
                         this.getAllList();
