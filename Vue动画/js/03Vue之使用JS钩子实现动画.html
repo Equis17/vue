@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .ball {
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<!--JS钩子动画
+    <transition>
+        动画进入:
+            v-on:before-enter
+            v-on:enter
+            v-on:after-enter
+            v-on:enter-cancelled
+        动画退出:
+            v-on:before-leave
+            v-on:leave
+            v-on:after-leave
+            v-on:leave-cancelled
+    </transition>
+
+
+    methods:{
+        before-enter:function(el){
+            //code
+        }
+    }
+-->
+<div id="app">
+    <input type="button" @click="flag=!flag">
+    <!--对过渡标签里的元素进行半场动画-->
+    <transition
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter">
+        <div class='ball' v-show="flag"></div>
+    </transition>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            flag: false
+        },
+        methods: {
+            beforeEnter: function (el) {
+                el.style.transform = 'translate(0,0)'
+            },
+            enter: function (el, done) {
+                /*这里的offsetHeight是强制刷新动画*/
+                el.offsetHeight;
+                el.style.transform = 'translate(150px,300px)';
+                el.style.transition = ' all .5s ease';
+                /*在enter和leave中必须调用done来结束动画 这里的done指的是afterEnter,否则，它们将被同步调用，过渡会立即完成。(不执行之后的方法)*/
+                done();
+            },
+            afterEnter: function (el) {
+                this.flag = !this.flag;
+                console.log('ok');
+            }
+        }
+    });
+</script>
+</body>
+</html>

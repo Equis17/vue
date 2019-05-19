@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/vue-2.4.0.js"></script>
+    <style>
+        /*
+        v-enter：
+        进入过渡的开始状态。在元素被插入之前生效，在元素被插入之后的下一帧移除。
+        在动画中 v-enter 类名在节点插入 DOM 后不会立即删除，而是在 animationend 事件触发时删除。
+        */
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="flag=!flag">
+    <!--默认前缀为v transition元素,把需要动画控制的元素包裹起来
+        该标签是vue官方提供的
+    -->
+    <transition name='bounce'>
+        <h3 v-if="flag">hello world!</h3>
+    </transition>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            flag:true
+
+        }
+    });
+</script>
+</body>
+</html>
