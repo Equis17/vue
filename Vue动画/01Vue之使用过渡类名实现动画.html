@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/vue-2.4.0.js"></script>
+    <style>
+        /*默认类名为v-enter/v-leave-to
+          如果有特定要求 以transition标签的name为前缀
+          eg:transition name="fade"
+          .fade-enter
+        */
+        .fade-enter,
+        .fade-leave-to{
+            opacity: 0;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active{
+            transition: all .5s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="flag=!flag">
+    <!--默认前缀为v transition元素,把需要动画控制的元素包裹起来
+        该标签是vue官方提供的
+    -->
+    <transition name='fade'>
+        <h3 v-if="flag">hello world!</h3>
+    </transition>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            flag:true
+        }
+    });
+</script>
+</body>
+</html>
