@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: .5s all ease;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a href="#" @click.prevent="componentName='login'">login</a>
+    <a href="#" @click.prevent="componentName='register'">register</a>
+    <!--mode指动画执行的顺序 默认同时进行-->
+    <!--
+    out-in是先出后进
+    in-out是后进先出
+    -->
+    <transition mode="out-in">
+        <component :is="componentName"></component>
+    </transition>
+</div>
+<template id="login">
+    <div>
+        登录组件
+    </div>
+</template>
+
+<template id="register">
+    <div>
+        注册组件
+    </div>
+</template>
+
+
+<script>
+    Vue.component('login',{
+        template:"#login"
+    });
+    Vue.component('register',{
+        template:"#register"
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            componentName:'login'
+        }
+    });
+</script>
+</body>
+</html>

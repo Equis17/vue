@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <a href="#" @click.prevent="componentName='login'">login</a>
+    <a href="#" @click.prevent="componentName='register'">register</a>
+    <!--该标签是Vue官方提供的 :is的属性为组件的名称(字符串类型) 当该属性被切换时 自动改变组件-->
+    <component :is="componentName"></component>
+</div>
+<template id="login">
+    <div>
+        登录组件
+    </div>
+</template>
+
+<template id="register">
+    <div>
+        注册组件
+    </div>
+</template>
+
+
+<script>
+    Vue.component('login',{
+        template:"#login"
+    });
+    Vue.component('register',{
+        template:"#register"
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            componentName:'login'
+        }
+    });
+</script>
+</body>
+</html>

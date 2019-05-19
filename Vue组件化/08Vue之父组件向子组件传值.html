@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <son :parent-msg="msg" @show="show"></son>
+</div>
+<template id="son">
+    <div><span>sonMsg:{{msg}}</span><input type="text" :value="parentMsg"><input type="button" value="click"
+                                                                                 @click="myClick"></div>
+</template>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '消息来自父组件'
+        },
+        methods: {
+            show(msg) {
+                alert('方法来自父组件'+msg);
+            }
+        },
+        components: {
+            son: {
+                template: "#son",
+                data: function () {
+                    return {
+                        msg: '消息来自子组件'
+                    }
+                },
+                methods:{
+                    myClick:function () {
+                        this.$emit('show',this.msg);
+                    }
+                }
+            ,
+            props: ['parent-msg', 'parent-func']
+        }
+    }
+    })
+</script>
+</body>
+</html>
