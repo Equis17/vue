@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--标签即为组件的名称 如果名称采用的是驼峰式 在这里要转换成连接式子-->
+    <my-component></my-component>
+</div>
+<template id="myComponent">
+    <div>
+        <input type="button" @click="increment" value="+1">
+        <span>{{count}}</span>
+    </div>
+</template>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            myComponent:{
+                template:'#myComponent',
+                data:function () {/*data属性是一个方法 必须返回的是对象*/
+                    return{
+                        count:0
+                    }
+                },
+                methods:{
+                    increment:function () {
+                        this.count++;
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
