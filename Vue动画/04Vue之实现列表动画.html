@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(80px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all .5s ease;
+        }
+
+        .v-move {
+            transition: all .5s ease;
+        }
+        .v-leave-active {
+            position: absolute;
+        }
+        li {
+            width: 100%;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    name:<input type="text" v-model="name">
+    age:<input type="text" v-model="age">
+
+    <input type="button" value="add" @click="add">
+    <ul>
+        <!--在实现列表动画的时候 需要列表时v-for循环渲染出来的  并且每个li都要有key
+            列表动画只能够是li 不能是table的tr
+        -->
+        <transition-group>
+            <li v-for="item in list" :key="item.id" @click="del(item.id)">{{item.name}}-----{{item.age}}</li>
+        </transition-group>
+    </ul>
+</div>
+<script>
+    //MVVM中的VM
+    const VM = new Vue({
+        el: '#app',//要控制的区域 id
+        data: {
+            id:0,
+            name:'',
+            age:'',
+            list: [{id:0,name:'jack',age:'11'}]
+        },
+        methods:{
+            add:function () {
+                this.id+=1;
+                console.log(this.id);
+                this.list.push({id: this.id, name: this.name, age: this.age});
+            },
+            del:function (i) {
+                console.log(i);
+                this.list.splice(i,1);
+            }
+        }
+    });
+</script>
+</body>
+</html>
