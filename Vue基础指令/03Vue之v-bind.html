@@ -11,10 +11,10 @@
         作用:将属性解析成js表达式执行 用于绑定属性的指令
         简写: v-bind:text -> :text
     -->
-    <input type="button" v-bind:text="msg">
-    <input type="button" v-bind:text="msg + 123">
-    <input type="button" :text="msg">
-    <input type="button" :text="msg + 123">
+    <input type="text" v-bind:value="msg">
+    <input type="text" v-bind:value="msg + 123">
+    <input type="text" :value="msg">
+    <input type="text" :value="msg + 123">
 
 </div>
 <script>
