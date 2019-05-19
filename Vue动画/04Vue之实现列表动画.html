@@ -34,14 +34,14 @@
     age:<input type="text" v-model="age">
 
     <input type="button" value="add" @click="add">
-    <ul>
         <!--在实现列表动画的时候 需要列表时v-for循环渲染出来的  并且每个li都要有key
             列表动画只能够是li 不能是table的tr
+            添加appear属性为入场效果
+            添加tag属性指定transition-group渲染为指定元素,默认渲染为span标签
         -->
-        <transition-group>
+        <transition-group appear tag="ul">
             <li v-for="item in list" :key="item.id" @click="del(item.id)">{{item.name}}-----{{item.age}}</li>
         </transition-group>
-    </ul>
 </div>
 <script>
     //MVVM中的VM
