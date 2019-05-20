@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="firstName">
+    <input type="text" v-model="lastName">
+    <input type="text" v-model="fullName">
+    <router-link to="/login">login</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    const login = {
+        template: '<h3>login</h3>'
+    };
+    const vr = new VueRouter({
+        routes: [
+            {path: '/login', component: login}
+        ]
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: '',
+            lastName: ''
+        },
+        methods: {},
+        router: vr,
+        computed: {/*当方法内部属性值改变就调用 不要定义fullName */
+            'fullName': function () {
+                return this.firstName + this.lastName;
+            }
+        }
+    })
+</script>
+</body>
+</html>
