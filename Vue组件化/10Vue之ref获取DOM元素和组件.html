@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--ref表示引用的意思 在组件中设置ref
+    this.$refs表示dom元素
+    作用:能够进行DOM操作
+       也能够进行组件方法的调用
+       -->
+    <h3 ref="myh3">{{msg}}</h3>
+    <login ref="login"></login>
+    <input type="button" value="click" @click="showMsg">
+</div>
+
+<template id="login"><span>{{msg}}</span></template>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {msg: 'hello'},
+        methods: {
+            getElement: function () {
+                console.log(this.$refs['myh3']);
+            },
+            showMsg: function () {
+                /*调用子组件的方法*/
+                this.$refs['login'].showMsg();
+                this.getElement();
+            }
+        }, components: {
+            login: {
+                template: '#login',
+                data: function () {
+                    return {
+                        msg: 'login'
+                    }
+                }, methods: {
+                    showMsg: function () {
+                        alert(this.msg);
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
