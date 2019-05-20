@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js"></script>
+</head>
+<body>
+<!--router-link to中传递query参数
+    值保存在this.$route.query中
+-->
+<div id="app">
+    <router-link to="/login?id=10&name=mike">login</router-link>
+    <router-link to="/register?id=11&name=mike">register</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    const login = {
+        template: '<h3>login:{{$route.query.id}}----{{$route.query.name}}</h3>',
+        created() {
+            // console.log(this.$route)
+        }
+    };
+    const register = {
+        template: '<h3>register:{{$route.query.id}}----{{$route.query.name}}</h3>',
+        created() {
+        }
+    };
+    const vr = new VueRouter({
+        routes: [
+            {path: '/login', component: login},
+            {path: '/register', component: register}
+        ]
+    });
+    const vm = new Vue({
+        el: '#app',
+        router: vr
+    })
+</script>
+</body>
+</html>

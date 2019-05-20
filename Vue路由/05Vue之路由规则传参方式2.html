@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js"></script>
+</head>
+<body>
+<!--router-link to中传递方式如restful那样 /login/id/name
+    值保存在this.$route.params中
+-->
+<div id="app">
+    <router-link to="/login/10/mike">login</router-link>
+    <router-link to="/register/11/mike">register</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    const login = {
+        template: '<h3>login:{{$route.params.id}}----{{$route.params.name}}</h3>',
+        created() {
+            // console.log(this.$route)
+        }
+    };
+    const register = {
+        template: '<h3>register:{{$route.params.id}}----{{$route.params.name}}</h3>',
+        created() {
+        }
+    };
+    const vr = new VueRouter({
+        routes: [
+            {path: '/login/:id/:name', component: login},
+            {path: '/register/:id/:name', component: register}
+        ]
+    });
+    const vm = new Vue({
+        el: '#app',
+        router: vr
+    })
+</script>
+</body>
+</html>
