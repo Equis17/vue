@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js"></script>
+    <style>
+        .header{
+            color: red;
+            line-height: 50px;
+            text-align: center;
+            background-color: yellow;
+        }
+        .container {
+            display: flex;
+        }
+        .left {
+            flex:2;
+            line-height: 50px;
+            background-color: blue;
+        }
+
+        .right {
+            flex:8;
+            line-height: 50px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-view class="header"></router-view>
+    <div class="container">
+        <router-view name="left" class="left"></router-view>
+        <router-view name="right" class="right"></router-view>
+    </div>
+</div>
+<template id="header">
+    <h3>header</h3>
+</template>
+<template id="left">
+    <h3>left</h3>
+</template>
+<template id="right">
+    <h3>right</h3>
+</template>
+<script>
+    const header = {template: "#header"};
+    const left = {template: "#left"};
+    const right = {template: "#right"};
+
+    const vr = new VueRouter({
+        routes: [
+            {
+                path: '/', components: {
+                    default: header,
+                    left:left,
+                    right:right
+                }
+            }
+        ]
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        router: vr
+    })
+</script>
+</body>
+</html>
