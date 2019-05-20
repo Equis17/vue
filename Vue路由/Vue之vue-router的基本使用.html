@@ -11,12 +11,15 @@
     2.调用vueRouter的构造函数  const vr=new vueRouter(routes:[{path:'/login',component:login}])
     3.将vue-router的实例化对象存放到Vue对象当中 const vm =new Vue({el:'#app',router:vr});
     4.在Vue模板中使用router-view
-    注意:路由跳转前面带# eg:#/login
+    注意:a标签路由跳转前面带# eg:#/login
+        官方提供了router-link标签
 -->
 <body>
-<div id="app">
+<div id="app"><!--
     <a href="#/login">login</a>
-    <a href="#/register">register</a>
+    <a href="#/register">register</a>-->
+    <router-link to="/login" tag="span">login</router-link>
+    <router-link to="/register" tag="span">register</router-link>
     <router-view></router-view>
 </div>
 <script >
