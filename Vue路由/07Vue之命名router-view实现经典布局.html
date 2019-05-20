@@ -6,23 +6,25 @@
     <script src="js/vue-2.4.0.js"></script>
     <script src="js/vue-router-3.0.1.js"></script>
     <style>
-        .header{
+        .header {
             color: red;
             line-height: 50px;
             text-align: center;
             background-color: yellow;
         }
+
         .container {
             display: flex;
         }
+
         .left {
-            flex:2;
+            flex: 2;
             line-height: 50px;
             background-color: blue;
         }
 
         .right {
-            flex:8;
+            flex: 8;
             line-height: 50px;
             background-color: green;
         }
@@ -53,10 +55,11 @@
     const vr = new VueRouter({
         routes: [
             {
+                /*coponents设置组件名*/
                 path: '/', components: {
                     default: header,
-                    left:left,
-                    right:right
+                    left: left,
+                    right: right
                 }
             }
         ]
