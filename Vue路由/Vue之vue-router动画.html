@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js"></script>
+    <style>
+        .router-link-active{
+            color: red;
+        }
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(150px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: .5s all ease;
+        }
+    </style>
+</head>
+<!--vue-router的基本使用
+    1.创建模板 const login={template:'<h3>login</h3>'}
+    2.调用vueRouter的构造函数  const vr=new vueRouter(routes:[{path:'/login',component:login}])
+    3.将vue-router的实例化对象存放到Vue对象当中 const vm =new Vue({el:'#app',router:vr});
+    4.在Vue模板中使用router-view
+    注意:a标签路由跳转前面带# eg:#/login
+        官方提供了router-link标签
+-->
+<body>
+<div id="app"><!--
+    <a href="#/login">login</a>
+    <a href="#/register">register</a>-->
+    <router-link to="/login" tag="span">login</router-link>
+    <router-link to="/register" tag="span">register</router-link>
+    <transition mode="out-in">
+        <router-view></router-view>
+    </transition>
+</div>
+<script >
+    const login = {
+        template: '<h3>login</h3>'
+    };
+    const register = {
+        template: '<h3>register</h3>'
+    };
+    const vueRouter=new VueRouter({
+        routes:[
+            /*重定向跳转到默认为login组件*/
+            {path:'/',redirect:'/login'},
+            {path:'/login',component:login},
+            {path:'/register',component:register}
+        ]
+    });
+    const vm=new Vue({
+        el: '#app',
+        router:vueRouter
+    });
+
+</script>
+</body>
+</html>
