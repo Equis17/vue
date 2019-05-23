@@ -42,18 +42,8 @@ import Vue from 'vue';
 
 import VueRouter from 'vue-router'
 import App from '../App.vue';
-
+import router from '../js/router.js'
 Vue.use(VueRouter);
-import account from '../main/Account.vue'
-import goodslist from '../main/GoodsList.vue'
-import login from '../subcom/login.vue'
-import register from '../subcom/register.vue'
-const router = new VueRouter({
-    routes: [
-        {path: '/account', component: account,children:[{path:'login',component:login},{path:'register',component:register}]},
-        {path: '/goodslist', component: goodslist}
-    ]
-});
 var vm = new Vue({
     el: '#app',
     // router: router
