@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../Vue动画/js/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>这里会被替换</h3>
+</div>
+<script>
+    const login={
+        template:'<h1>login组件</h1>'
+    };
+    const vm = new Vue({
+        el: '#app',
+        render:function (createElement) {
+            //把指定模板渲染为html结构 并且替换el中的所有html
+            return createElement(login)
+        }
+    })
+</script>
+</body>
+</html>

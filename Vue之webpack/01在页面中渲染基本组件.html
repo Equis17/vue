@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../Vue动画/js/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>333</h3>
+    <login></login>
+</div>
+<template id="login">
+    <div><h1>这是login组件</h1></div>
+</template>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        components: {
+            login: {
+                template: '#login'
+            }
+        }
+    })
+</script>
+</body>
+</html>
