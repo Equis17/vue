@@ -11,10 +11,19 @@ console.log(1);
 *         2.import Vue from vue/dist/vue.js(一般)
 *         3.在resolve中的alias属性添加(以vue结尾,更换路径)vue$:vue/dist/vue.js(推荐)
 * */
+
 import Vue from 'vue';
-const vm=new Vue({
-    el:'#app',
-    data:{
-        msg:'hello'
+import login from '../login.vue'
+
+const vm = new Vue({
+    el: '#app',
+    data: {
+        msg: 'hello'
+    },
+    render: function (createElement) {
+        return createElement(login);
     }
+    // components:{
+    //     login
+    // }
 });

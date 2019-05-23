@@ -17,6 +17,8 @@
         el: '#app',
         render:function (createElement) {
             //把指定模板渲染为html结构 并且替换el中的所有html
+            //如果在webpack中运行vue的时候import的是vue(runtime-only)则不能够正常将component挂载到页面去
+            //因此我们可以使用render函数在页面中渲染.vue文件 注意return
             return createElement(login)
         }
     })
