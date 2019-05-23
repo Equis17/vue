@@ -22,5 +22,10 @@ module.exports = {
             {test: /\.(ttf|eot|svg|woff|woff2)$/, use: ['url-loader']},
             {test: /\.js$/, use: ['babel-loader'], exclude: /node_modules/}
         ]
+    },
+    resolve:{
+        alias:{
+            'vue$':'vue/dist/vue.js'
+        }
     }
 };

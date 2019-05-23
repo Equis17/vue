@@ -6,7 +6,14 @@
 
 ## 在普通页面中使用render函数渲染组件
 
+## 在js中import的规则
+1. 找项目根目录中有没有node_modules的文件夹
 
+2. 在node_modules中根据包名查找相应文件
+
+3. 在文件夹中找package.json的包配置文件
+
+4. 在package.json中找main的属性[包的入口文件]
 
 ## 在webpack中配置.vue组件页面的解析
 
